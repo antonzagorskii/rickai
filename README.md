@@ -23,7 +23,7 @@ Or install it yourself as:
 For creating of instance you need to call 
 
 ```ruby
-client = RickAi::Client.new(agent_url)
+client = Rickai::Client.new(agent_url)
 ```
 
 For calling action of update you just can call
