@@ -1,7 +1,7 @@
 require 'net/http'
 require 'multi_json'
 
-module RickAi
+module Rickai
   DEFAULT_BASE_URI = 'https://exchange.appcraft.ru'
   DEFAULT_TIMEOUT = 10
 

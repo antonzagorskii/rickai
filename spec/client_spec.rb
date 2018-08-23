@@ -1,8 +1,8 @@
 require 'spec_helper'
 require 'multi_json'
 
-RSpec.describe RickAi::Client do
-  let(:client) { RickAi::Client.new('AGENT_URL') }
+RSpec.describe Rickai::Client do
+  let(:client) { Rickai::Client.new('AGENT_URL') }
 
   def api_uri(path)
     "https://exchange.appcraft.ru/transactions/AGENT_URL/#{path}"
@@ -47,7 +47,7 @@ RSpec.describe RickAi::Client do
         )
         .to_return(status: 500, body: '', headers: {})
 
-      expect(-> { client.update(body) }).to raise_error(RickAi::Client::InvalidResponse)
+      expect(-> { client.update(body) }).to raise_error(Rickai::Client::InvalidResponse)
     end
   end
 end
