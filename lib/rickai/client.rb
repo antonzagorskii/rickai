@@ -2,7 +2,7 @@ require 'net/http'
 require 'multi_json'
 
 module Rickai
-  DEFAULT_BASE_URI = 'https://exchange.appcraft.ru'
+  DEFAULT_BASE_URI = 'https://exchange.rick.ai'
   DEFAULT_TIMEOUT = 10
 
   class Client
@@ -22,6 +22,10 @@ module Rickai
       verify_response(request(url_create, attributes))
     end
 
+    def check(attributes)
+      verify_response(request(url_check, attributes))
+    end
+
     private
 
     def url_create
@@ -30,6 +34,10 @@ module Rickai
 
     def url_update
       "/transactions/#{@agent_url}/update"
+    end
+
+    def url_check
+      "/transactions/#{@agent_url}/check"
     end
 
     def verify_response(response)

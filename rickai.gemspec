@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Anton Zagorskii"]
   spec.email         = ["zagorskiianton@gmail.com"]
 
-  spec.summary       = %q{Rickai gem does communicating with API easier}
+  spec.summary       = %q{Gem which will help you to get integration with Rick.io the fastest way}
   spec.homepage      = "https://github.com/antonzagorskii"
   spec.license       = "MIT"
 

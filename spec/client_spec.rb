@@ -5,7 +5,7 @@ RSpec.describe Rickai::Client do
   let(:client) { Rickai::Client.new('AGENT_URL') }
 
   def api_uri(path)
-    "https://exchange.appcraft.ru/transactions/AGENT_URL/#{path}"
+    "https://exchange.rick.ai/transactions/AGENT_URL/#{path}"
   end
 
   describe '#actions' do
@@ -35,6 +35,19 @@ RSpec.describe Rickai::Client do
         .to_return(status: 200, body: '', headers: {})
 
       client.create(body)
+    end
+
+    it 'checks' do
+      stub_request(:post, api_uri('check'))
+          .with(
+              body: MultiJson.dump(body),
+              headers: {
+                  'Content-Type' => 'application/json'
+              }
+          )
+          .to_return(status: 200, body: '', headers: {})
+
+      client.check(body)
     end
 
     it "raises an error if POST doesn't return a 2xx response code" do

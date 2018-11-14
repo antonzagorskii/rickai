@@ -1,6 +1,6 @@
 # Rickai
 
-Gem which will help you to do integration with Rick.io the fastest way
+Gem which will help you to get integration with Rick.io the fastest way
 
 ## Installation
 
@@ -34,6 +34,11 @@ client.update(your_attributes)
 For calling action of create you just can call
 ```ruby
 client.create(your_attributes)
+```
+
+For calling action of check you just can call
+```ruby
+client.check(your_attributes)
 ```
 
 ## Contributing
