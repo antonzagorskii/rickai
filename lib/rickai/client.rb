@@ -2,7 +2,7 @@ require 'net/http'
 require 'multi_json'
 
 module Rickai
-  DEFAULT_BASE_URI = 'https://exchange.rick.ai'
+  DEFAULT_BASE_URI = 'https://exchange.rick.ai'.freeze
   DEFAULT_TIMEOUT = 10
 
   class Client
@@ -44,7 +44,7 @@ module Rickai
       if response.code.to_i >= 200 && response.code.to_i < 300
         response
       else
-        raise InvalidResponse.new("Rick.ai API returned an invalid response: #{response.code} - #{response.message}")
+        raise InvalidResponse, "Rick.ai API returned an invalid response: #{response.code} - #{response.message}"
       end
     end
 
@@ -62,8 +62,14 @@ module Rickai
       req.add_field('Content-Type', 'application/json')
 
       unless body.nil?
-        attributes = Hash[body.map { |(k, v)| [k.to_sym, v] }]
-        req.body = MultiJson.dump(attributes) unless body.nil?
+        attributes =
+          if body.is_a?(Hash)
+            Hash[body.map { |(k, v)| [k.to_sym, v] }]
+          else
+            body.map { |item| Hash[item.map { |(k, v)| [k.to_sym, v] }] }
+          end
+
+        req.body = MultiJson.dump(attributes)
       end
 
       session.start do |http|
