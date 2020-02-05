@@ -26,6 +26,10 @@ module Rickai
       verify_response(request(url_check, attributes))
     end
 
+    def lead(attributes)
+      verify_response(request(url_lead, attributes))
+    end
+
     private
 
     def url_create
@@ -38,6 +42,10 @@ module Rickai
 
     def url_check
       "/transactions/#{@agent_url}/check"
+    end
+
+    def url_lead
+      "/webhooks/#{@agent_url}/lead"
     end
 
     def verify_response(response)
